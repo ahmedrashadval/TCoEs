@@ -15,12 +15,12 @@ public class Multiple_windows_Test extends Test_base{
        MW = new Multiple_windows(driver);
 
        MW.click();
-       String parentID = driver.getWindowHandle();
-       ArrayList<String> Windows = new ArrayList<String> (driver.getWindowHandles());
+       String parentID = getDriver().getWindowHandle();
+       ArrayList<String> Windows = new ArrayList<String> (getDriver().getWindowHandles());
        if(parentID.equals(Windows.get(0))) {
-           driver.switchTo().window(Windows.get(1));
+           getDriver().switchTo().window(Windows.get(1));
        }else {
-           driver.switchTo().window(Windows.get(0));
+           getDriver().switchTo().window(Windows.get(0));
        }
        Thread.sleep(1500);
         String title = driver.getTitle();

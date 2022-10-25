@@ -8,13 +8,13 @@ public class Drag_Drop_Test extends Test_base{
 static Drag_Drop dd;
 
 
-@Test
+    @Test
     public static void drag(){
     dd= new Drag_Drop(driver);
     action = new Actions(driver);
 
 
-    driver.switchTo().frame(dd.Iframe);
+    getDriver().switchTo().frame(dd.Iframe);
     action.dragAndDrop(dd.Drag, dd.Drop).build().perform();
 
 

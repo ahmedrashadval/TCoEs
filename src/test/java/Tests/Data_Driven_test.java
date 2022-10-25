@@ -16,7 +16,7 @@ public class Data_Driven_test extends Test_base{
     public static void INV_Login(String user,String pass) throws InterruptedException {
         CM= new Orange_HRM_Cookies(driver);
         CM.login(user,pass);
-        System.out.println(Thread.currentThread());
+       // System.out.println(Thread.currentThread());
     }
 
 

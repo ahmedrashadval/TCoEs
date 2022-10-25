@@ -15,13 +15,13 @@ public class Window_Tab_Test extends Test_base{
     public static void Wt(){
         WT = new Window_Tab(driver);
         WT.Open();
-        ArrayList<String> Windows = new ArrayList<String> (driver.getWindowHandles());
+        ArrayList<String> Windows = new ArrayList<String> (getDriver().getWindowHandles());
         driver.switchTo().window(Windows.get(1));
-            System.out.println(driver.getTitle());
-            driver.close();
-            driver.switchTo().window(Windows.get(2));
-            System.out.println(driver.getTitle());
-            driver.close();
-            driver.switchTo().window(Windows.get(0));
+            System.out.println(getDriver().getTitle());
+        getDriver().close();
+        getDriver().switchTo().window(Windows.get(2));
+            System.out.println(getDriver().getTitle());
+        getDriver().close();
+        getDriver().switchTo().window(Windows.get(0));
     }
 }

@@ -11,7 +11,7 @@ public class Js_Amazon_Test extends Test_base{
     @Test
     public static void M(){
         A = new JS_Amazon(driver);
-        js = (JavascriptExecutor) driver;
+        js = (JavascriptExecutor) getDriver();
        // js.executeScript("arguments[0].click();", A.account);
 
         js.executeScript("arguments[0].click();", A.menu);

@@ -15,7 +15,9 @@ import org.testng.annotations.*;
 
 import java.awt.*;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Objects;
+import java.util.Properties;
 
 import static Helper.Help_Func.RepRes;
 
@@ -26,11 +28,28 @@ public class Test_base extends AbstractTestNGCucumberTests {
     static Actions action;
     static JavascriptExecutor js;
     static Robot robot;
+    public static ThreadLocal<WebDriver> drivers = new ThreadLocal<>();
+   static String English;
+    static  String deutsch;
+    static String Spanish;
+    static String Title_es;
+    static String Title_en;
+    public static Properties prop = new Properties();
+    static String homeurl;
+String ll;
+
+    public static WebDriver getDriver() {
+        return drivers.get();
+    }
+
 
     @BeforeSuite
-    @Parameters({"URL","browser"})
-    public void StartDriver(@Optional String URL,@Optional String browser) throws  InterruptedException
-    {   if(browser.equalsIgnoreCase("chrome-headless")) {
+    @Parameters({"URL","browser","Lang"})
+    public void StartDriver(@Optional String URL,@Optional String browser,@Optional String Lang) throws  InterruptedException {
+        ll=Lang;
+        PropertiesRead.main();
+        homeurl = URL;
+        if(browser.equalsIgnoreCase("chrome-headless")) {
         report = new ExtentReports("Report" + "Chrome_Results-Final.html");
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
@@ -45,18 +64,37 @@ public class Test_base extends AbstractTestNGCucumberTests {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         driver = new ChromeDriver(options);
-        driver.manage().window().maximize();
     }
-        driver.manage().window().maximize();
-        driver.navigate().to(URL);
+    else if (browser.equalsIgnoreCase("FireFox"))
+    {
+        report = new ExtentReports("ScreenShots/screenshot2"+"Firefox_Results.html");
+        WebDriverManager.firefoxdriver().setup();
+        FirefoxOptions options = new FirefoxOptions();
+        driver = new FirefoxDriver(options);
+
+    }
+    else if (browser.equalsIgnoreCase("Localization-Chrome"))
+    {
+        report = new ExtentReports("ScreenShots/screenshot2"+"Firefox_Results.html");
+        WebDriverManager.chromedriver().setup();
+        HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
+        chromePrefs.put("intl.accept_languages", Lang);
+        ChromeOptions options = new ChromeOptions();
+        options.setExperimentalOption("prefs", chromePrefs);
+        driver = new ChromeDriver(options);
+
+    }
+        drivers.set(driver);
+        getDriver().manage().window().maximize();
+        getDriver().navigate().to(URL);
         Thread.sleep(2000);
-        action = new Actions(driver);
-        js = (JavascriptExecutor) driver;
+        action = new Actions(getDriver());
+        js = (JavascriptExecutor) getDriver();
     }
 
     @AfterSuite
     public void StopDriver() {
-        driver.quit();
+        getDriver().quit();
         report.flush();
     }
 

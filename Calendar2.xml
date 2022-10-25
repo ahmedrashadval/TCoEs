@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Suite" >
+    <parameter name="browser"  value="Chrome"/>
+    <parameter name="URL"  value="https://jqueryui.com/resources/demos/datepicker/dropdown-month-year.html"/>
+    <test name="Cookies" >
+        <classes>
+            <class name="Tests.Calendar2_Test"/>
+        </classes>
+    </test>
+</suite> <!-- Suite -->

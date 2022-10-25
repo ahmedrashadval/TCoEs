@@ -13,7 +13,7 @@ public class Vacancies_Test extends Test_base{
 
     @Test
     public static void Vac() throws InterruptedException {
-        action=new Actions(driver);
+        action=new Actions(getDriver());
         Lo=new Orange_HRM_Cookies(driver);
         Tb= new Tabs_Task(driver);
         Lo.login("Admin","admin123");

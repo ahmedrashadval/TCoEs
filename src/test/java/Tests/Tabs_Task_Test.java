@@ -26,7 +26,7 @@ public class Tabs_Task_Test extends Test_base{
 
     @Test
     public void Rec() throws InterruptedException, AWTException {
-        action=new Actions(driver);
+        action=new Actions(getDriver());
         Lo=new Orange_HRM_Cookies(driver);
         Tb= new Tabs_Task(driver);
         robot = new Robot();
@@ -36,7 +36,7 @@ public class Tabs_Task_Test extends Test_base{
         while (!Objects.equals(actual,rr)){
           //  System.out.println(actual);
             action.sendKeys(TAB).perform();
-            actual = driver.switchTo().activeElement().getAccessibleName();
+            actual = getDriver().switchTo().activeElement().getAccessibleName();
             Thread.sleep(500);
         }
         robot.keyPress(KeyEvent.VK_ENTER);
